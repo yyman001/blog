@@ -4,7 +4,8 @@
 1.git有3个版本,每个版本都有index.html,css,js文件各一个,如果现在是在第三个版本,修改了index,网上有第四版,想合并第四版,但index文件修改过,不会自动合并,可能会冲突,那该怎么处理?
 
 2.我想把index.html 文件恢复到第二个版本,其他文件不变
-
+--1.命令的不知道怎么操作-,命令的思路:把当前文件保存到缓存区,切换回到第二版本,把第二版的index.html提取出来,再切换到最新的工作区,把缓存区内容切换回来,替换index.html
+--2.如果是使用SourceTree图形,选中第二版本的index.html,copy内容到你当前的index.html即可
 
 ######html5 canvas
 1.什么情况下才用到beginPath 和 closePath
@@ -34,6 +35,9 @@ bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) `三次塞比尔曲线`
 
 3.字体适应问题
 
+4.手机端获取pageX,pgaeY
+--1.参考答案http://stackoverflow.com/questions/7100153/jquery-swipe-vs-touch-pagex-and-pagey-keep-returning-0
+使用`e.originalEvent.touches[0].pageX` 或 `event.targetTouches[0].pageY` 而非e.touches[0](多点触控会出问题)
 
 ######css
 1.图片垂直居中7中方法[国外]
@@ -60,6 +64,7 @@ eq:
   vertical-align: middle;
 }
 ```
+
 
 
 
