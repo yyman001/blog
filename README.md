@@ -1,6 +1,7 @@
 ﻿#疑问问题思考,问题分析
 
 #####git问题
+
 1.git有3个版本,每个版本都有index.html,css,js文件各一个,如果现在是在第三个版本,修改了index,网上有第四版,想合并第四版,但index文件修改过,不会自动合并,可能会冲突,那该怎么处理?
 
 2.我想把index.html 文件恢复到第二个版本,其他文件不变
@@ -8,6 +9,7 @@
 --2.如果是使用SourceTree图形,选中第二版本的index.html,copy内容到你当前的index.html即可
 
 ######html5 canvas
+
 1.什么情况下才用到beginPath 和 closePath
 beginPath一般只在画线和弧度(圆)才用到
 当使用`stroke`描边,需要使用`closePath`关闭路径,而使用`fill`填充则不需要,因为它是自动闭合路径的.但还是建议写,因为符合规范.
@@ -21,6 +23,7 @@ lineTo是链接moveTo的线路径
 2.画圆的方法有几种,有什么区别?
 arc(x, y, radius, startAngle, endAngle, anticlockwise)
 arcTo(x1, y1, x2, y2, radius)
+
 ---------以上2种只是绘画出相同半径的曲线
 quadraticCurveTo(cp1x, cp1y, x, y) `二次塞比尔曲线`
 bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) `三次塞比尔曲线`
@@ -32,8 +35,12 @@ bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) `三次塞比尔曲线`
 1.布局问题
 
 2.图片自适应问题
+img透明图
+伪类填充比例h/w比pt%值
 
 3.字体适应问题
+rem
+媒体查询
 
 4.手机端获取pageX,pgaeY
 --1.参考答案http://stackoverflow.com/questions/7100153/jquery-swipe-vs-touch-pagex-and-pagey-keep-returning-0
@@ -64,6 +71,11 @@ eq:
   vertical-align: middle;
 }
 ```
+
+黑白灰度滤镜兼容全浏览器
+软文链接:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-image-example-using-css3-js-v2-0-with-browser-feature-detection-using-modernizr/
+demo:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-ie11-v2/
+
 
 ###开发
 1.如何使用sass 更好管理项目模块?
