@@ -85,6 +85,23 @@ demo:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-ie11-v2/
 布局更灵活/简单/清晰
 
 
+####38活动动画问题以及开发的问题
+css动画方案
+
+1.纯css
+  -> 1.1 添加class(动画全部属性写在class)
+  -> 1.2 标签属性定义动画名,持续时间,延迟事件(js 添加class)
+  -事件回调,使用js回调	
+
+2.js写
+  -> 其他插件实现
+
+
+========页面切换(不使用2方案),使用 class添加方案+回调|| 1.1 + 1.2 混合方案
+
+animate-effect="fadeInUp" animation-duration=".75s" animate-delay="1.2s"
+
+// bug:同步执行动画(带有延迟的,已经变成可视,但动画还没开始) [重复css导致]
 
 
 
