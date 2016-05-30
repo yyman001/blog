@@ -72,6 +72,22 @@ eq:
 }
 ```
 
+2.关于使用伪类进行高度扩展自适应,父级的容器必须有宽度(遇上圣杯布局和双翼布局要特别注意布局是不正确编写易导致,伪类无法撑开正常的宽度)
+伪类扩展高度
+```css
+.cover-img{
+  &:after{
+    content:'';
+    display:block;
+    padding-top:?%;//父级高/宽 * 100
+  }
+}
+
+
+```
+
+
+
 黑白灰度滤镜兼容全浏览器
 软文链接:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-image-example-using-css3-js-v2-0-with-browser-feature-detection-using-modernizr/
 demo:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-ie11-v2/
@@ -95,7 +111,7 @@ css动画方案
 
 2.js写
   -> 其他插件实现
-
+GSAP 插件
 
 ========页面切换(不使用2方案),使用 class添加方案+回调|| 1.1 + 1.2 混合方案
 
