@@ -120,5 +120,34 @@ animate-effect="fadeInUp" animation-duration=".75s" animate-delay="1.2s"
 // bug:同步执行动画(带有延迟的,已经变成可视,但动画还没开始) [重复css导致]
 
 
+=====================================插件
+#### iScroll5
+#####不能复制文本
+  解决方案:http://www.voidcn.com/blog/xw505501936/article/p-6094669.html
+  方法二（参数设置）： 
+  iScroll5版本： 
+  参数中preventDefault: true 修改为 preventDefault: false即可，但是此方法是处理了所有的冒泡传递事件，虽然也可解决当前问题； 
+  但是会对iscroll设计初衷流畅度有所影响 
+
+#####不能点击click/点击事件无效
+  添加 click: true 参数即可  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
