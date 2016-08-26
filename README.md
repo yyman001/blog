@@ -46,6 +46,13 @@ rem
 --1.参考答案http://stackoverflow.com/questions/7100153/jquery-swipe-vs-touch-pagex-and-pagey-keep-returning-0
 使用`e.originalEvent.touches[0].pageX` 或 `event.targetTouches[0].pageY` 而非e.touches[0](多点触控会出问题)
 
+
+关于css3 文本省略号溢出bug的问题
+注意:文本省略不能是用于 带有 `href属性`的  <a> 标签,其他标签可以是用
+相关测试demo:http://jsfiddle.net/qb62mjbr/
+
+
+
 ######css
 1.图片垂直居中7中方法[国外]
 http://demosthenes.info/blog/723/Seven-Ways-of-Centering-With-CSS
@@ -99,7 +106,7 @@ demo:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-ie11-v2/
 
 2.页面布局与布局命名与组件划分管理?
 布局更灵活/简单/清晰
-
+是用 `BEM` 命名
 
 ####38活动动画问题以及开发的问题
 css动画方案
@@ -262,7 +269,7 @@ var _tools = {
 	  
 	  $.when.apply($, my_array);
 	  $.when.apply(null , my_array);
-	  第一个参数 $ , null 的区别?
+	  第一个参数 $ , null 的区别? 2个都可以执行,好像没看出有什么区别
 /////////////////////////////////////////////////////////////
 
 
