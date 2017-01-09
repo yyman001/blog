@@ -3,10 +3,20 @@
 #####git问题
 
 1.git有3个版本,每个版本都有index.html,css,js文件各一个,如果现在是在第三个版本,修改了index,网上有第四版,想合并第四版,但index文件修改过,不会自动合并,可能会冲突,那该怎么处理?
-
+-先提交,再拉去合并,去冲突,再次提交.
 2.我想把index.html 文件恢复到第二个版本,其他文件不变
 --1.命令的不知道怎么操作-,命令的思路:把当前文件保存到缓存区,切换回到第二版本,把第二版的index.html提取出来,再切换到最新的工作区,把缓存区内容切换回来,替换index.html
 --2.如果是使用SourceTree图形,选中第二版本的index.html,copy内容到你当前的index.html即可
+
+3.在各个版本之前切换(会删除之前的历史提交)
+git reset --hard SHA
+
+4.倒退到指定时间点指定文件
+git checkout SHA filename
+
+5.合并最近几个提交
+git rebase -i sha
+
 
 ######html5 canvas
 
@@ -50,7 +60,7 @@ rem
 关于css3 文本省略号溢出bug的问题
 注意:文本省略不能是用于 带有 `href属性`的  <a> 标签,其他标签可以是用
 相关测试demo:http://jsfiddle.net/qb62mjbr/
-
+其他实现方案:http://lomu.me/post/css-multiline-text-overflow
 
 
 ######css
@@ -273,8 +283,25 @@ var _tools = {
 /////////////////////////////////////////////////////////////
 
 
+动画秘诀 本人做的笔记，不明白自己看手册吧。
+一个视点（perspective）、两种模式（2D，3D）、三条轴线（X,Y,Z）、四种变化（旋转、移动 、缩放、扭曲）
+perspective
+perspective（视点) 眼睛到显示器的距离，数值越大，离的越远，看得越小，反之。创建3D动画必须声明的属性！定义有两种方式，一种是基于舞台 perspective:800px; 、一种是基于自身 transform：perspective(800px;)
+perspective-origin
+perspective-origin 此属性必须跟随上面的 perspective 一起使用！该属性作用是设置视点的观看坐标。perspective-origin(x,y)，x[left,center,right]、y[top,center,bottom]、也可以设置为百分比，可以负值。
+transform-style
+transform-style 设置子元素位于此元素所在平面或三维空间内。transform-style：flat | preserve-3d
+transform-origin
+transform-origin 设置该元素按某个原点进行转换。transform-origin(x,y)，x[left,center,right]、y[top,center,bottom]、也可以设置为百分比，可以负值。
+backface-visibility
+backface-visibility 设置一个元素背面面向用户时是否可见。backface-visibility：visible | hidden
 
 
+
+js原型
+实例中的指针仅指向原型，而不指向构造函数。
+
+所有函数的默认原型都是 Object 的实例，因此默认原型都会包含一个内部指针 __proto__，指向 Object.prototype。
 
 
 
