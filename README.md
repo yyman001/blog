@@ -424,3 +424,196 @@ State(状态)                                        当对象状态改变时，
 Strategy(策略)                                    将算法封装到类中，将选择和实现分离开来。
 
 Visitor(访问者)                                    为类增加新的操作而不改变类本身。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vue 组件注册
+------------
+1. Vue.extend()是Vue构造器的扩展，调用Vue.extend()创建的是一个组件构造器。 
+2. Vue.extend()构造器有一个选项对象，选项对象的template属性用于定义组件要渲染的HTML。 
+3. 使用Vue.component()注册组件时，需要提供2个参数，第1个参数时组件的标签，第2个参数是组件构造器。 
+4. 组件应该挂载到某个Vue实例下，否则它不会生效。
+------------
+
+1.页面全局部注册
+	
+// 1.创建一个组件构造器
+var myComponent = Vue.extend({
+	template: '<div>This is my first component!</div>'
+})
+
+// 2.注册组件，并指定组件的标签，组件的HTML标签为<my-component>
+Vue.component('my-component', myComponent)  //需要提供2个参数，第1个参数时组件的标签，第2个参数是组件构造器。 
+
+new Vue({
+	el: '#app'
+});
+
+另一写法 - 语法糖
+
+/ 全局注册，my-component1是标签名称
+Vue.component('my-component1',{
+    template: '<div>This is the first component!</div>'
+})
+
+var vm1 = new Vue({
+    el: '#app1'
+})
+
+/////////
+
+2.页面局部
+ // 1.创建一个组件构造器
+var myComponent = Vue.extend({
+	template: '<div>This is my first component!</div>'
+})
+
+//Vue.component('my-component', myComponent)  取消这一步
+
+new Vue({
+	el: '#app',
+	components: {
+		// 2. 将myComponent组件注册到Vue实例下   <== 注册到这个实例
+		'my-component' : myComponent
+	}
+});
+
+------语法糖
+```html
+var vm2 = new Vue({
+el: '#app2',
+components: {
+	// 局部注册，my-component2是标签名称
+	'my-component2': {
+		template: '<div>This is the second component!</div>'
+	},
+	// 局部注册，my-component3是标签名称
+	'my-component3': {
+		template: '<div>This is the third component!</div>'
+	}
+}
+})	
+```		
+		
+///////////////		
+
+组件的嵌套 	
+	子组件只能在父组件的template中使用
+
+	
+	
+////////////
+使用script或template标签
+
+1.使用<script>标签   --- 比较少使用这种方式
+
+```html
+<script type="text/x-template" id="myComponent">
+	<div>This is a component!</div>
+</script>
+
+ Vue.component('my-component',{
+	template: '#myComponent'
+})
+        
+```
+
+
+
+2.使用<template>标签
+
+```html
+<template id="myComponent">
+	<div>This is a component!</div>
+</template>
+
+Vue.component('my-component',{
+	template: '#myComponent'
+})
+
+```
+	
+	
+	
+	
+	
+	
+///////  动态组件
+
+
+
+
+组件之间的数据传递
+
+
+父 -> 子 
+
+<div id="app">
+    <my-component v-bind:my-name="name" v-bind:my-age="age"></my-component>
+</div>
+
+<template id="myComponent">
+    <table>
+        <tr>
+            <th colspan="2">
+                子组件数据
+            </th>
+        </tr>
+        <tr>
+            <td>my name</td>
+            <td>{{ myName }}</td>
+        </tr>
+        <tr>
+            <td>my age</td>
+            <td>{{ myAge }}</td>
+        </tr>
+    </table>
+</template>
+
+var vm = new Vue({
+    el: '#app',
+    data: {
+        name: 'keepfool',
+        age: 28
+    },
+    components: {
+        'my-component': {
+            template: '#myComponent',
+            props: ['myName', 'myAge']
+        }
+    }
+})
+
+
+<child-component v-bind:子组件prop="父组件数据属性"></child-component>
+
+在模板把父的数据通过属性传递,子 在js 中 props 传递属性 接收 数据
+	
+自定义事件
+
+子 -> 父 
+	
+使用 $on(eventName) 监听事件    父元素监听事件
+使用 $emit(eventName) 触发事件  子元素抛出事件
+	
+	
+	
+	
+	
+	
+	
+	
+
