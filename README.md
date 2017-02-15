@@ -487,7 +487,10 @@ new Vue({
 	el: '#app',
 	components: {
 		// 2. 将myComponent组件注册到Vue实例下   <== 注册到这个实例
-		'my-component' : myComponent
+		'my-component' : myComponent,
+		data: function () {  
+           return {};
+        }  
 	}
 });
 
@@ -592,12 +595,14 @@ var vm = new Vue({
     components: {
         'my-component': {
             template: '#myComponent',
-            props: ['myName', 'myAge']
+            props: ['myName', 'myAge'] // myName => 子组件的值
         }
     }
 })
 
+注意:得到父元素数据,必须用 props 中定义的名称 读取变量,非 父元素 属性名
 
+				 v-bind:子组件的值="父组件的属性"
 <child-component v-bind:子组件prop="父组件数据属性"></child-component>
 
 在模板把父的数据通过属性传递,子 在js 中 props 传递属性 接收 数据
@@ -609,8 +614,8 @@ var vm = new Vue({
 使用 $on(eventName) 监听事件    父元素监听事件
 使用 $emit(eventName) 触发事件  子元素抛出事件
 	
-	
-	
+可以看这:	
+http://www.cnblogs.com/wisewrong/p/6266038.html
 	
 	
 	
