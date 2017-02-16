@@ -1,5 +1,13 @@
 ﻿#疑问问题思考,问题分析
 
+####HTML语义化
+
+i = em -> 代表语气助词(主要是用来强调),强调某关键词,而使句子含义不同
+b = strong -> 重点性,关键词
+
+
+
+
 #####git问题
 
 1.git有3个版本,每个版本都有index.html,css,js文件各一个,如果现在是在第三个版本,修改了index,网上有第四版,想合并第四版,但index文件修改过,不会自动合并,可能会冲突,那该怎么处理?
@@ -596,6 +604,13 @@ var vm = new Vue({
         'my-component': {
             template: '#myComponent',
             props: ['myName', 'myAge'] // myName => 子组件的值
+			//也可以通过以下这种方式获取,但官网没提到,this.$root 获取到父级 vm实例
+			,data:function (){
+				retuen {
+					myName:this.$root.name,
+					myAge:this.$root.age
+				}
+			}
         }
     }
 })
