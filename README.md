@@ -615,6 +615,12 @@ var vm = new Vue({
     }
 })
 
+```cmd
+父组件访问子组件：使用$children或$refs(建议用这种方式) - 子组件添加v-ref:属性名 方式
+子组件访问父组件：使用$parent
+子组件访问根组件：使用$root
+```
+
 注意:得到父元素数据,必须用 props 中定义的名称 读取变量,非 父元素 属性名
 
 				 v-bind:子组件的值="父组件的属性"
@@ -629,11 +635,42 @@ var vm = new Vue({
 使用 $on(eventName) 监听事件    父元素监听事件
 使用 $emit(eventName) 触发事件  子元素抛出事件
 	
+eventName => 要规范属性,建议用全小写,不要用峰驼式(不支持)
+	eg:
+              峰驼:	 clickA  (不支持)
+         小写+数字:	 click1  (支持)
+     小写+小写字母:	 click-a (支持)
+小写+横杆+大写字母:	 click-A (不支持)
+            全大写:	 CLICK   (不支持)
+	
+	
 可以看这:	
 http://www.cnblogs.com/wisewrong/p/6266038.html
 	
+
+----------注意事件的监听书写
+
+----------
 	
-	
+/////////////////内容分发
+是用 slot 标签作为占位符,并是用 name 属性 指定
+
+
+
+套用:
+标签元素 slot="name的值"
+eg:
+<div>
+    <slot name="text">分布内容</slot>
+</div>
+
+<p slot="text">我是内容</p>
+
+既可 替换 占位符内容
+
+
+
+
 	
 	
 
