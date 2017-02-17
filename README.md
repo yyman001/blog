@@ -643,7 +643,11 @@ eventName => 要规范属性,建议用全小写,不要用峰驼式(不支持)
 小写+横杆+大写字母:	 click-A (不支持)
             全大写:	 CLICK   (不支持)
 	
-	
+在父组件中调用,通过v-on:自定义事件="触发事件"
+ 
+ <view-cont1 v-bind:items="items" @show-win="showWin"></view-cont1>
+=
+
 可以看这:	
 http://www.cnblogs.com/wisewrong/p/6266038.html
 	
