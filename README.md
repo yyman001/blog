@@ -672,9 +672,162 @@ eg:
 
 既可 替换 占位符内容
 
+////////////////////////
+vue router2
+////////////////////////
+###编程式的导航
+通过js方式执行路径切换
+
+####router.push(location)
+
+<router-link :to="..."> 等同于调用 router.push(...)。
+
+声明式:`<router-link :to="...">`
+编程式:`router.push(...)`
+
+常用调用方式有
+```html
+/ 字符串
+router.push('home')
+
+// 对象
+router.push({ path: 'home' })
+
+// 命名的路由
+router.push({ name: 'user', params: { userId: 123 }})
+
+// 带查询参数，变成 /register?plan=private
+router.push({ path: 'register', query: { plan: 'private' }})
+
+```
+
+
+####router.replace(location)
+不会向 history 添加新记录-替换掉当前的 history 记录。
+
+声明式:`<router-link :to="..." replace>`
+编程式:`router.replace(...)`
+
+####router.go(number)
+在 history 记录中向前或者后退多少步
+
+常用方法
+```html
+// 在浏览器记录中前进一步，等同于 history.forward()
+router.go(1)
+
+// 后退一步记录，等同于 history.back()
+router.go(-1)
+
+// 前进 3 步记录
+router.go(3)
+
+// 如果 history 记录不够用，那就默默地失败呗
+router.go(-100)
+router.go(100)
+
+```
+###命名路由
+可以和普通路由混合书写
+注意`to` 和`:to` 的书写
+
+普通路由使用 `to` 属性方式绑定
+命名路由使用 指令方式 `:to` (有冒号!有冒号!有冒号!)绑定
+后面跟着表达式写法 {name:'路径名字',params:{id:'123'}}
+`id`:为二级路径参数
+
+```html```
+<p>命名路由</p>
+	<!--
+	这个是普通路由
+	<router-link to="/listName/123">ListName</router-link>
+	-->
+	<router-link :to="{ name:'listName' ,params: { id: 123 }} ">命名路由link</router-link>
+	<!--
+	也是等同于这种方式的调用
+	router.push({ name: 'user', params: { userId: 123 }})
+	-->
+```
+命名路由js定义中做一个name 参数
+
+,{
+	path:'/listName/:id',
+	name:'listName', //命名路由定义,普通路由多写这个也不会报错,但在命名路由一定要写,不然会报错的
+	component:routerNameDemo
+}
+
+###命名视图
+
+以前的方式的多个组件使用一个路由进行渲染 一对多关系
+使用命名视图 可以 指定组件 在指定的路由中渲染(就好比2个div,不同的组件对应不同的div进行渲染) 多对多??
+
+为 router-view 标签添加上 `name` 属性即可
+如果 router-view 没有设置名字，那么默认为 default。
+
+```html
+<router-view class="view one"></router-view>
+<router-view class="view two" name="a"></router-view>
+<router-view class="view three" name="b"></router-view>
+
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/',
+      components: {
+        default: Foo,  //foo 组件默认渲染到没有名字的路由中
+        a: book,  //book 组件渲染到 name=a 的路由中
+        b: car   //car 组件渲染 到 name=b的路由中
+      }
+    }
+  ]
+})
+
+```
+####重定向
+在路由对象中添加 redirect 属性并 指定 重定向路径(字符串)
+```
+{ path: '/a', redirect: '/b' } // 从a 重定向到 b
+也可以是命名路由
+{ path: '/a', redirect: { name: 'foo' }} 从a 重定向到 foo
+还可以是一个方法
+{ path: '/a', redirect: to => {
+      // 方法接收 目标路由 作为参数
+      // return 重定向的 字符串路径/路径对象
+}}
+
+```
+####别名
+当访问/b 路径的时候,地址栏是/b,但访问内容映射到了/a,
+既这2个路径地址都是指向A 模块的内容的
+注意:
+如果`/b`定义了路由,其他路由不能使用已定义的路由路径为别名
+建议:别名不要跟 定义路径一样(会冲突,虽然不报错也没效果,但不建议这样写)
+『别名』的功能让你可以自由地将 UI 结构映射到任意的 URL，而不是受限于配置的嵌套路由结构。
+```
+const router = new VueRouter({
+  routes: [
+    // {path:'/b',component:B}, //如果这个定义了,
+    { path: '/a', component: A, alias: '/b' } //我的别名不能是/b,因为优先级的问题,会被忽略
+  ]
+})
+```
+####HTML5 History 模式
+vue-router 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+需要后台配置支持
+具体可以看这章节:https://router.vuejs.org/zh-cn/essentials/history-mode.html
+略过
+
+###进阶
+####导航钩子
 
 
 
-	
+
+
+
+
+
+
+
 	
 
