@@ -198,6 +198,7 @@ animate-effect="fadeInUp" animation-duration=".75s" animate-delay="1.2s"
 
 =====================================插件
 #### iScroll5
+
 #####不能复制文本
   解决方案:http://www.voidcn.com/blog/xw505501936/article/p-6094669.html
   方法二（参数设置）： 
@@ -209,7 +210,13 @@ animate-effect="fadeInUp" animation-duration=".75s" animate-delay="1.2s"
   添加 click: true 参数即可  
   
 
-
+////////
+ISO  移动端 input 无法输入文本
+现象：安卓机正常，苹果手机输入没有显示，input没有值。
+```css
+-webkit-user-select:none;
+```
+请勿包含这个属性,
 
 
 
@@ -672,6 +679,14 @@ eg:
 
 既可 替换 占位符内容
 
+
+=======================
+如何禁止浏览器滚动条滚动，但是又不让它消失？(https://www.zhihu.com/question/21865401)
+1.依然保留滚动条,上鼠标上下滚轮事件取消 http://output.jsbin.com/disable-scrolling/1
+2.直接隐藏滚动条,并补回消失的滚动条宽度(m,p的值都可以) http://yujiangshui.com/review-how-to-make-popup-mask-effect/
+建议:蒙版层可以 深色一点
+
+=======
 ////////////////////////
 vue router2
 ////////////////////////
