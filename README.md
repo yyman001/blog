@@ -953,8 +953,283 @@ beforeRouteEnter (to, from, next) {
 这有篇文章讲解了路由钩子:http://www.cnblogs.com/faith3/p/6224235.html
 
 ####路由元信息
+给路由添加meta 字段(独立标识,可能是防止匹配相同的嵌套路由判断用的吧)
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      children: [
+        {
+          path: 'bar',
+          component: Bar,
+          // a meta field
+          meta: { requiresAuth: true }
+        }
+      ]
+    }
+  ]
+})
+
+```
+官方讲解:routes 配置中的每个路由对象为 `路由记录`,路由记录可以是嵌套的，因此，当一个路由匹配成功后，他可能匹配多个路由记录(就是嵌套路由,子路由)
+
+可以使用上一节的全局钩子进行跳转前的判断,结合$route.matched 方法进行筛选
+
+```
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+```
+这节还是右点模糊...后续补上
+
+####过度动效(跟vue的使用方法大致一样)
+<router-view> 是基本的动态组件,没错,跟vue 官网的动态组件一样<component>
+标签一样,可以使用<transtion>标签进行嵌套完成动画的切换
+<transition> 的所有功能 在这里同样适用。
+如果见到的页面,可以不使用路由也可以的,因为使用路由之后,传导数据就开始编的麻烦了
+
+```html
+<transition>
+	<component is:"组件名"></component>
+</transition>
+
+<!--
+该用法会给所有路由设置一样的过渡效果
+-->
+<transition>
+  <router-view></router-view>
+</transition>
+
+```
+####单个路由的过渡
+我个人觉得就是给组件添加 transition 吧,这样需要哪个给动画就给.
+```js
+
+const Foo = {
+  template: `
+    <transition name="slide">
+      <div class="foo">...</div>
+    </transition>
+  `
+}
+
+<template id="list">
+	<transition name="fade">
+		<h2>我是列表页</h2>
+	</transition>
+</template>
+
+```
+####基于路由的动态过渡
+还可以基于当前路由与目标路由的变化关系，动态设置过渡效果：
+这里其实没多少新知识,也是vue的动态过度+钩子
+
+```html
+<!-- 使用动态的 transition name 动态指令绑定动画类名-->
+<transition :name="transitionName">
+  <router-view></router-view>
+</transition>
+// 接着在父组件内
+// watch $route 决定使用哪种过渡
+watch: {
+  '$route' (to, from) {
+    const toDepth = to.path.split('/').length //通过判断路由长度来执行前进后退动画(url长就是进,短是后退)
+    const fromDepth = from.path.split('/').length
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+  }
+}
+```
+####数据获取(这节比较重要)
+获取时机
+
+-导航完成之后获取=>先完成导航，然后在接下来的组件生命周期钩子中获取数据。在数据获取期间显示『加载中』之类的指示。
+
+- 导航完成之前获取=>导航完成前，在路由的 enter 钩子中获取数据，在数据获取成功后执行导航。
+
+从技术角度讲，两种方式都不错 —— 就看你想要的用户体验是哪种。
+
+#####导航完成后获取数据
+组件渲染完毕,马上现在loading加载提示,数据返回渲染的时候隐藏loading
+```html
+<template>
+  <div class="post">
+    <div class="loading" v-if="loading">
+      Loading...
+    </div>
+
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+
+    <div v-if="post" class="content">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+    </div>
+  </div>
+</template>
+export default {
+  data () {
+    return {
+      loading: false,
+      post: null,
+      error: null
+    }
+  },
+  //created () { //created方法不存在了.替换为
+  computed(){
+    // 组件创建完后获取数据，
+    // 此时 data 已经被 observed 了
+    this.fetchData()
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      this.error = this.post = null
+      this.loading = true
+      // replace getPost with your data fetching util / API wrapper
+      getPost(this.$route.params.id, (err, post) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.post = post
+        }
+      })
+    }
+  }
+}
+```
 
 
 
-	
+#####在导航完成前获取数据
+在路由跳转渲染组件之前获取到数据,使用组件的`beforeRouteEnter `钩子获取数据后调用`next`方法进行跳转(感觉比上面复杂点)
+```html
+export default {
+  data () {
+    return {
+      post: null,
+      error: null
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    getPost(to.params.id, (err, post) => 
+      if (err) {
+        // display some global error message
+        next(false)
+      } else {
+        next(vm => {
+          vm.post = post
+        })
+      }
+    })
+  },
+  // 路由改变前，组件就已经渲染完了
+  // 逻辑稍稍不同
+  watch: {
+    $route () {
+      this.post = null
+      getPost(this.$route.params.id, (err, post) => {
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.post = post
+        }
+      })
+    }
+  }
+}
+```
+
+在为后面的视图获取数据时，用户会停留在当前的界面，因此建议在数据获取期间，显示一些进度条或者别的指示。如果数据获取失败，同样有必要展示一些全局的错误提醒。
+
+####滚动行为(注意: 这个功能只在 HTML5 history 模式下可用。)
+当创建一个 Router 实例，你可以提供一个 scrollBehavior 方法：
+```js
+const router = new VueRouter({
+  mode: 'history', //改变模式
+  routes: [...],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+	//savedPosition => Object {x: 0, y: 0}
+  }
+})
+```
+第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。
+返回滚动
+- { x: number, y: number }
+- { selector: string } (暂时没见到这个东西)
+
+如果返回一个布尔假的值，或者是一个空对象，那么不会发生滚动。
+跟`{x: 0, y: 0}`一样,不会滚动
+按下 后退/前进 按钮时
+```
+scrollBehavior (to, from, savedPosition) {
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    return { x: 0, y: 0 }
+  }
+}
+```
+#####模拟描点滚动
+```
+scrollBehavior (to, from, savedPosition) {
+  if (to.hash) {
+    return {
+      selector: to.hash
+    }
+  }
+}
+
+```
+####路由懒加载 (需要异步组件基础,先跳过)
+当路由被访问的时候才加载对应组件,结合 Vue 的 异步组件 和 Webpack 的 code splitting feature, 轻松实现路由组件的懒加载。
+方式一:依赖webpack
+```
+const Foo = resolve => {
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
+  require.ensure(['./Foo.vue'], () => {
+    resolve(require('./Foo.vue'))
+  })
+}
+```
+方式二:把组件按组分块(基本路由配置不变)
+有时候我们想把某个路由下的所有组件都打包在同个异步 chunk 中。只需要 给 chunk 命名，提供 require.ensure 第三个参数作为 chunk 的名称:
+```
+const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
+const Bar = r => require.ensure([], () => r(require('./Bar.vue')), 'group-foo')
+const Baz = r => require.ensure([], () => r(require('./Baz.vue')), 'group-foo')
+```
+Webpack 将相同 chunk 下的所有异步模块打包到一个异步块里面 —— 这也意味着我们无须明确列出 require.ensure 的依赖（传空数组就行）。
+
+
+
+
+
+
+
+
+
+
 
