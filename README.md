@@ -1397,3 +1397,33 @@ requirejs.onError = function (err) {
 
 ###打包构建
 [r.js](http://requirejs.org/docs/optimization.html) 是 RequireJS 附带的 optimize 工具，比较成熟，打包构建 AMD 模块的构建产物优秀。
+
+
+
+
+
+####深入闭包问题
+闭包需要几个条件:
+- 闭包是在函数被调用执行的时候才被确认创建的。(但我个人认为,要视情况,有些复杂的情况,觉得是在预编译的时候就已经把这种关系确定下来)
+- 闭包的形成，与作用域链的访问顺序有直接关系。
+- 只有内部函数访问了上层作用域链中的变量对象时，才会形成闭包，因此，我们可以利用闭包来访问函数内部的变量。(这点就是第一点中提到的复杂情况)
+
+用这个例子
+```javascript
+function foo() {
+    var a = 10;
+
+    function fn1() { // 如果改成 function fn1(a) => 调用的时候传入参数,也不是闭包了
+        return a;
+    }
+
+    function fn2() {
+        return 10; //无访问上层作用域变量
+    }
+
+    fn2();
+}
+
+foo();
+```
+
