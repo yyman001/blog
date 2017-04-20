@@ -11,6 +11,10 @@ url包含中文的时候记得用 encodeURI 转码
 
 #####git问题
 
+
+解决 Permission denied(publicKey) 问题 (key过期)
+http://senola.github.io/blog/2014/07/13/git-error/
+
 1.git有3个版本,每个版本都有index.html,css,js文件各一个,如果现在是在第三个版本,修改了index,网上有第四版,想合并第四版,但index文件修改过,不会自动合并,可能会冲突,那该怎么处理?
 -先提交,再拉去合并,去冲突,再次提交.
 2.我想把index.html 文件恢复到第二个版本,其他文件不变
