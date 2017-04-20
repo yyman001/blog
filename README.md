@@ -1427,3 +1427,31 @@ function foo() {
 foo();
 ```
 
+
+
+
+
+谷歌浏览器57版的问题
+preventDefault 事件被阻挡
+解决:加上* { touch-action: none; } 
+
+
+
+
+
+layer 弹窗插件bug
+是用原生video元素的全屏会消失
+原因:animation 动画属性影响
+解决:
+.layui-layer{
+  &:-webkit-full-screen-ancestor:not(iframe){
+	animation-name: none!important;
+  }
+}
+
+
+
+
+
+
+
