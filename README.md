@@ -1456,6 +1456,16 @@ layer 弹窗插件bug
 
 
 
+vue-cli 离线模板初始化(window)
+注意路径就尅了,到git把整个项目下载来,放到任意目录
+eg:放在c盘根目录
+```cmd
+vue init `C:\webpack-master` `v-t`
 
+```
+支持sass,安装依赖,安装完重启服务器
 
+npm install node-sass --save-dev
+npm install sass-loader --save-dev
 
+vue 路由:https://juejin.im/entry/58759934128fe1005838aea3
