@@ -581,6 +581,12 @@ Vue.component('my-component',{
 Vue 2.0开发实践（组件间通讯）
 https://github.com/webplus/blog/issues/10
 
+Vue2 利用 v-model 实现组件props双向绑定的优美解决方案(这个方案也很好解决类似弹窗的数据传递问题)
+https://segmentfault.com/a/1190000008662112
+
+如何在Vue2中实现组件props双向绑定[作者自己编写了一个mixin用于双向绑定]
+http://www.cnblogs.com/xxcanghai/p/6124699.html
+
 组件之间的数据传递
 
 
