@@ -578,6 +578,8 @@ Vue.component('my-component',{
 
 
 
+Vue 2.0开发实践（组件间通讯）
+https://github.com/webplus/blog/issues/10
 
 组件之间的数据传递
 
@@ -628,7 +630,7 @@ var vm = new Vue({
 })
 
 ```cmd
-父组件访问子组件：使用$children或$refs(建议用这种方式) - 子组件添加v-ref:属性名 方式
+父组件访问子组件：使用$children或$refs(建议用这种方式) - 子组件添加(1.0 v-ref:属性名 方式 ), (2.0 `ref="属性名"`)
 子组件访问父组件：使用$parent
 子组件访问根组件：使用$root
 ```
@@ -655,7 +657,7 @@ eventName => 要规范属性,建议用全小写,不要用峰驼式(不支持)
 小写+横杆+大写字母:	 click-A (不支持)
             全大写:	 CLICK   (不支持)
 	
-在父组件中调用,通过v-on:自定义事件="触发事件"
+在父组件中调用,通过v-on:自定义事件(子组件触发的事件=>$emit(eventName))="触发事件(父组件接收参数的方法)"
  
  <view-cont1 v-bind:items="items" @show-win="showWin"></view-cont1>
 =
@@ -1484,8 +1486,60 @@ vue 路由:https://juejin.im/entry/58759934128fe1005838aea3
 
 
 
+vuex
+```cmd
+var store =  new Vuex.Store({
+    state: {
+        messages: 0
+    },
+    mutations:{
+        "ADD": function(state, msg) {
+            state.messages += msg;
+        }
+    },
+    // action不用再去外面定义 可以直接写在构建参数里
+    actions:{
+        "ADD" : function(store , param){
+            store.commit('ADD',param)
+        },
+    }
+})
+
+使用常量替代 Mutation 事件类型
+```cmd
+mutations: {
+    // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+    [SOME_MUTATION] (state) {
+      // mutate state
+    }
+  }
+```
+```
+//页面调用需要卸载`computed`中
+computed:{
+   msg : function(){
+      return this.$store.getters.getMessage
+   }
+}
+
+Promise Action
+```cmd
+actions:{
+    "ADD" : function(store , param){
+        return new Promise(function(resolve, reject) {
+            store.commit('ADD',param)
+            resolve("ok");
+        })
+    }
+}
+```
 
 
+MapGetters/ MapActions
+mapState, mapMutations, mapGetters,mapActions
+
+mapMutations,mapActions写在`methods`中
+mapGetters,mapState 学在`computed`中
 
 
 
