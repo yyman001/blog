@@ -1590,3 +1590,16 @@ http://leenty.com/tags/vuejs/ 2-5
 技术胖的vuex视频教程
 http://jspang.com/2017/05/03/vuex/
 
+
+
+
+
+////////////////////////////////
+webpack打包大的问题
+原因不知道
+但绝对是使用了 import { LoadMore } from 'vux'; 方式引入
+改回 import LoadMore from 'vux/src/components/load-more' 引入,文件解决
+
+
+
+
