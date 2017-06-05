@@ -1443,7 +1443,7 @@ foo();
 
 
 
-谷歌浏览器57版的问题
+####谷歌浏览器57版的问题
 preventDefault 事件被阻挡
 解决:加上* { touch-action: none; } 
 
@@ -1451,7 +1451,7 @@ preventDefault 事件被阻挡
 
 
 
-layer 弹窗插件bug
+####layer 弹窗插件bug
 是用原生video元素的全屏会消失
 原因:animation 动画属性影响
 解决:
@@ -1464,13 +1464,18 @@ layer 弹窗插件bug
 
 
 
-####vue-cli 离线模板初始化(window)
-注意路径就尅了,到git把整个项目下载来,放到任意目录
-eg:放在c盘根目录
+####vvue-cli 离线/本地初始化手架(window)
+官方有`linux`的讲解方法,但`window`就懵逼了
+注意`路径`就可以了,到git把整个项目下载来,放到任意目录(完整下载,不建议用git拉,会很慢)
+eg:把下载包完整解压放到`c`盘根目录
 ```cmd
 vue init `C:\webpack-master` `v-t`
-
+vue init `文件路径` `模板名称`
 ```
+然后就可以愉快的使用了,开始你的vue之旅吧.
+
+
+
 支持sass,安装依赖,安装完重启服务器
 
 npm install node-sass --save-dev
