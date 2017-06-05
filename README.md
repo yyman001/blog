@@ -1443,10 +1443,12 @@ foo();
 
 
 
-####谷歌浏览器57版的问题
-preventDefault 事件被阻挡
-解决:加上* { touch-action: none; } 
-
+####谷歌浏览器57版的不支持preventDefault事件解决方案
+新版谷歌的`preventDefault`事件会被阻挡,低版本没有问题,在需要的element元素上使用(需要拖动的element),不建议使用`*`会有问题的
+解决:加上
+```css
+* { touch-action: none; } 
+```
 
 
 
