@@ -1453,16 +1453,17 @@ foo();
 
 
 
-####layer 弹窗插件bug
-是用原生video元素的全屏会消失
+####layer弹窗插件bug
+是用原生video元素的全屏会消失,没错,是整个video元素都消失了
 原因:animation 动画属性影响
 解决:
+```sass
 .layui-layer{
   &:-webkit-full-screen-ancestor:not(iframe){
 	animation-name: none!important;
   }
 }
-
+```
 
 
 
