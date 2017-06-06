@@ -1203,6 +1203,19 @@ scrollBehavior (to, from, savedPosition) {
   }
 }
 ```
+
+####vue router 全局钩子`afterEach`获取url不对问题
+在使用全局钩子`afterEach`中获取url地址不正确,跟`beforeEach`的一样,
+解决:
+```cmd
+//延迟执行一下
+setTimeout(function() {
+  console.warn('afterEach', window.location.href);
+  }, 100);
+
+````
+
+
 #####模拟描点滚动
 ```
 scrollBehavior (to, from, savedPosition) {
