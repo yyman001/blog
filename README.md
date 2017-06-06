@@ -1625,3 +1625,18 @@ http://jspang.com/2017/05/03/vuex/
 
 
 
+####flex伸缩容器
+父元素属性
+ - flex-direction: row; `Initial: row.`
+ - flex-wrap: nowrap; `Initial: nowrap.`
+ - flex-flow: row nowrap;`Initial: row nowrap.` 为`flex-direction`和`flex-wrap`的缩写
+ - justify-content: flex-start;`Initial: flex-start.` 主轴方向元素布局方式(X) `flex-start`左对齐,`flex-end`右对齐,`center`居中,`space-between`两端对齐,`space-around`每个元素间隔平均
+ - align-content: flex-start; `Initial: stretch.` 副轴方向元素布局方式(Y) `flex-start`左对齐,`flex-end`右对齐,`center`居中,`space-between`两端对齐,`space-around`每个元素间隔平均,`stretch`伸展铺满,不留空隙;
+ - align-items: center; `Initial: stretch.` 控制元素布局,跟副轴的很像
+
+子元素属性
+ - order: -1; `Initial: 0.` 控制元素排序位置,越小越前,越大越后
+ - align-self: flex-start; `Initial: auto.` 控制自己布局方式
+ - flex-grow: 0; `Initial: 0.`
+ - flex-shrink: 1; `Initial: 1.`
+ - flex-basis: content;`Initial: auto.`
