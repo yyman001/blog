@@ -1640,3 +1640,14 @@ http://jspang.com/2017/05/03/vuex/
  - flex-grow: 0; `Initial: 0.`
  - flex-shrink: 1; `Initial: 1.`
  - flex-basis: content;`Initial: auto.`
+
+
+ ####弹性布局的公式总结(em)
+因为`font-size`是有继承性的
+- 子元素自身`没有设置字号大小`时，元素的`width、height、line-height、margin、padding、border`等值转换都按下面公式转换：
+1 ÷ 父元素的font-size × 需要转换的像素值 = em <=> 需要转换的像素值/父元素的font-size
+- 子元素自身有设置`font-size`的时候,如果要计算`font-siz的em值`,一样是上面的公式,但其他的em值则根据自身`font-size`值进行计算
+公式应该为:需要转换的像素值/子元素的font-size
+
+1、浏览器的默认字体大小是16px
+参考:http://www.w3cplus.com/css/px-to-em
