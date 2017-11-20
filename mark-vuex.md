@@ -1,22 +1,28 @@
 
 #### vuex
+`刷新值会丢失！刷新值会丢失！刷新值会丢失！`
 ```js
 var store =  new Vuex.Store({
     state: {
         messages: 0
     },
     mutations:{
+	//主要为同步时间操作
         "ADD": function(state, msg) {
             state.messages += msg;
         }
     },
-    // action不用再去外面定义 可以直接写在构建参数里
     actions:{
+	//通过 actions 来处罚 mutations 中的事件，因为 actions 可能是异步操作
         "ADD" : function(store , param){
+			//通过 store.commit('mutations的事件名',param)
             store.commit('ADD',param)
         },
     }
-})
+});
+
+
+
 ```
 使用常量替代 `Mutation` 事件类型
 ```js
@@ -66,14 +72,16 @@ MapGetters/ MapActions
 mapState, mapMutations, mapGetters,mapActions
 
 mapMutations,mapActions写在`methods`中
-mapGetters,mapState 学在`computed`中
+mapGetters,mapState 写在`computed`中，但也可以写在`methods`中
 
+//时间触发
 this.$store.dispatch => 派发(触发) actions 中的 事件
 
 router.replace(location) //跳转
 
 dispatch = > actions：表明有某些事件发生的意向（可能是异步操作产生的副作用）。
 actions = > mutation => commit：说明会使实际状态发生改变的同步操作。
+dispatch出发 actions 的事件（可能异步）出发了 mutation的 commit 同步操作
 ```
 
 #### 相关文章
