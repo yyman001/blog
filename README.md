@@ -1,19 +1,19 @@
 ﻿#疑问问题思考,问题分析
 
-####HTML语义化
+#### HTML语义化
 
 i = em -> 代表语气助词(主要是用来强调),强调某关键词,而使句子含义不同
 b = strong -> 重点性,关键词
 
 
-##### 编码
+#### 编码
 url包含中文的时候记得用 encodeURI 转码
 
 
 
 
 
-######html5 canvas
+#### html5 canvas
 
 1.什么情况下才用到beginPath 和 closePath
 beginPath一般只在画线和弧度(圆)才用到
@@ -23,8 +23,6 @@ moveTo 和 lineTo 的区别?
 moveTo是画`起点路径`
 lineTo是链接moveTo的线路径
 
-
-
 2.画圆的方法有几种,有什么区别?
 arc(x, y, radius, startAngle, endAngle, anticlockwise)
 arcTo(x1, y1, x2, y2, radius)
@@ -33,10 +31,9 @@ arcTo(x1, y1, x2, y2, radius)
 quadraticCurveTo(cp1x, cp1y, x, y) `二次塞比尔曲线`
 bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) `三次塞比尔曲线`
 
-
 3.canvas对写入的图片有什么限制或对图片大小支持的限制?
 
-######webapp
+#### webapp
 
 微信坑
 关于css动画 用js写内联属性的动画会出现点击元素被强制清除动画(某些苹果机会出现这样的情况,部分不会,安卓没有这个问题)
@@ -64,7 +61,7 @@ rem
 其他实现方案:http://lomu.me/post/css-multiline-text-overflow
 
 
-######css
+#### css
 1.图片垂直居中7中方法[国外]
 http://demosthenes.info/blog/723/Seven-Ways-of-Centering-With-CSS
 
@@ -104,14 +101,12 @@ eq:
 
 ```
 
-
-
 黑白灰度滤镜兼容全浏览器
 软文链接:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-image-example-using-css3-js-v2-0-with-browser-feature-detection-using-modernizr/
 demo:http://www.majas-lapu-izstrade.lv/cross-browser-grayscale-ie11-v2/
 
 
-###开发
+#### 开发
 1.如何使用sass 更好管理项目模块?
 现状:文件太多,结构太深,对于资源文件的引用比较麻烦
 
