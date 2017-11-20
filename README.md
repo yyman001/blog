@@ -114,18 +114,6 @@ ISO  移动端 input 无法输入文本
 请勿包含这个属性,
 
 
-动画秘诀 本人做的笔记，不明白自己看手册吧。
-一个视点（perspective）、两种模式（2D，3D）、三条轴线（X,Y,Z）、四种变化（旋转、移动 、缩放、扭曲）
-perspective
-perspective（视点) 眼睛到显示器的距离，数值越大，离的越远，看得越小，反之。创建3D动画必须声明的属性！定义有两种方式，一种是基于舞台 perspective:800px; 、一种是基于自身 transform：perspective(800px;)
-perspective-origin
-perspective-origin 此属性必须跟随上面的 perspective 一起使用！该属性作用是设置视点的观看坐标。perspective-origin(x,y)，x[left,center,right]、y[top,center,bottom]、也可以设置为百分比，可以负值。
-transform-style
-transform-style 设置子元素位于此元素所在平面或三维空间内。transform-style：flat | preserve-3d
-transform-origin
-transform-origin 设置该元素按某个原点进行转换。transform-origin(x,y)，x[left,center,right]、y[top,center,bottom]、也可以设置为百分比，可以负值。
-backface-visibility
-backface-visibility 设置一个元素背面面向用户时是否可见。backface-visibility：visible | hidden
 
 
 
