@@ -124,32 +124,6 @@ js原型
 
 
 
-
-//////
-Vue主要有以下几个关键字
-v-model 绑定模型
-v-if 判断是否显示该dom
-v-show 判断是否将该dom的display设为none
-v-else if或者show为false时显示该dom
-v-for 迭代
-v-bind 绑定属性
-v-on 绑定方法
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 如何禁止浏览器滚动条滚动，但是又不让它消失？(https://www.zhihu.com/question/21865401)
 1.依然保留滚动条,上鼠标上下滚轮事件取消 http://output.jsbin.com/disable-scrolling/1
 2.直接隐藏滚动条,并补回消失的滚动条宽度(m,p的值都可以) http://yujiangshui.com/review-how-to-make-popup-mask-effect/
@@ -683,7 +657,7 @@ scrollBehavior (to, from, savedPosition) {
 }
 
 ```
-####路由懒加载 (需要异步组件基础,先跳过)
+#### 路由懒加载 (需要异步组件基础,先跳过)
 当路由被访问的时候才加载对应组件,结合 Vue 的 异步组件 和 Webpack 的 code splitting feature, 轻松实现路由组件的懒加载。
 方式一:依赖webpack
 ```
@@ -705,14 +679,7 @@ const Baz = r => require.ensure([], () => r(require('./Baz.vue')), 'group-foo')
 Webpack 将相同 chunk 下的所有异步模块打包到一个异步块里面 —— 这也意味着我们无须明确列出 require.ensure 的依赖（传空数组就行）。
 
 
-
-
-
-
-
-
-
-####深入闭包问题
+#### 深入闭包问题
 闭包需要几个条件:
 - 闭包是在函数被调用执行的时候才被确认创建的。(但我个人认为,要视情况,有些复杂的情况,觉得是在预编译的时候就已经把这种关系确定下来)
 - 闭包的形成，与作用域链的访问顺序有直接关系。
@@ -741,7 +708,7 @@ foo();
 
 
 
-####谷歌浏览器57版的不支持preventDefault事件解决方案
+#### 谷歌浏览器57版的不支持preventDefault事件解决方案
 新版谷歌的`preventDefault`事件会被阻挡,低版本没有问题,在需要的element元素上使用(需要拖动的element),不建议使用`*`会有问题的
 解决:加上
 ```css
@@ -751,7 +718,7 @@ foo();
 
 
 
-####layer弹窗插件bug
+#### layer弹窗插件bug
 是用原生video元素的全屏会消失,没错,是整个video元素都消失了
 原因:animation 动画属性影响
 解决:
@@ -765,7 +732,7 @@ foo();
 
 
 
-####vue-cli 离线/本地初始化手架(window)
+#### vue-cli 离线/本地初始化手架(window)
 官方有`linux`的讲解方法,但`window`就懵逼了
 注意`路径`就可以了,到git把整个项目下载来,放到任意目录(完整下载,不建议用git拉,会很慢)
 eg:把下载包完整解压放到`c`盘根目录
@@ -792,9 +759,7 @@ vue 路由:https://juejin.im/entry/58759934128fe1005838aea3
 带来一个问题:在开发中,直接引用是静态资源,会找不到路径...这个(自己在对应目录下文件应该可以了??)
 
 
-关于在vue组件开发模式中
-是用 const $jquery = `require('@/js/jquery.2.1.4.min.js');`方式引用, 变量名不要跟全局抛出的一样,这个返回是一个{},跟传统的组件模块引入的不一样,所以做加个下划线或者其他名字,像jq的不要
-写成 ~~`const $ = `require('@/js/jquery.2.1.4.min.js');`~~,这是不对了,
+
 
 
 

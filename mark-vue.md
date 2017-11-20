@@ -1,3 +1,16 @@
+### Vue主要有以下几个关键字
+v-model 绑定模型
+v-if 判断是否显示该dom
+v-show 判断是否将该dom的display设为none
+v-else if或者show为false时显示该dom
+v-for 迭代
+v-bind 绑定属性
+v-on 绑定方法
+
+#### 关于在vue组件开发模式中
+是用 const $jquery = `require('@/js/jquery.2.1.4.min.js');`方式引用, 变量名不要跟全局抛出的一样,这个返回是一个{},跟传统的组件模块引入的不一样,所以做加个下划线或者其他名字,像jq的不要
+写成 ~~`const $ = `require('@/js/jquery.2.1.4.min.js');`~~,这是不对了,
+
 ### vue 组件注册
 - Vue.extend()是Vue构造器的扩展，调用Vue.extend()创建的是一个组件构造器。 
 - Vue.extend()构造器有一个选项对象，选项对象的template属性用于定义组件要渲染的HTML。 
