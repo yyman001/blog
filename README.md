@@ -170,11 +170,7 @@ npm install sass-loader --save-dev
 vue 路由:https://juejin.im/entry/58759934128fe1005838aea3
 
 
-项目存放于子目录的配置如下eg: test目录
-那么配置`config/index.js`
-` assetsPublicPath: '/'`改为`assetsPublicPath: '/test目录/'` `test`就是要把资源文件存放在这个目录下
-然后build
-带来一个问题:在开发中,直接引用是静态资源,会找不到路径...这个(自己在对应目录下文件应该可以了??)
+
 
 
 
