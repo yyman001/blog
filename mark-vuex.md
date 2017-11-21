@@ -68,6 +68,8 @@ getters: {
 注意getIntegral`不带括号[不然会报错]`~(虽然组件有同名的方法,可能会覆盖哦~)
 console.log('this.getIntegral():',this.getIntegral); => 会输出 `state.integral`的值
 
+mapState => 直接获取state里面的值，又可以重名赋予给其他变量/相当于映射
+
 MapGetters/ MapActions
 mapState, mapMutations, mapGetters,mapActions
 
@@ -84,19 +86,44 @@ actions = > mutation => commit：说明会使实际状态发生改变的同步�
 dispatch出发 actions 的事件（可能异步）出发了 mutation的 commit 同步操作
 ```
 
+#### 局部状态state
+非全局的状态可以使用模块方法进行局部的书写
+
+模块一样是有自己的state，getters，mutations,actions 状态
+就调用写起来麻烦点
+
+直接写死
+```js
+cost store = new Vuex.Store({
+    modules:{
+       mod:A
+    }
+})
+```	
+
+动态加载模块
+```js
+// 注册模块 `myModule`
+store.registerModule('myModule', {
+  // ...
+})
+// 注册嵌套模块 `nested/myModule`
+store.registerModule(['nested', 'myModule'], {
+  // ...
+})
+store.unregisterModule(moduleName) 来动态卸载模块。注意，你不能使用此方法卸载静态模块（即创建 store 时声明的模块）。
+//之后就可以通过 store.state.myModule 和 store.state.nested.myModule 访问模块的状态。
+```
+具体写法参考：https://vuex.vuejs.org/zh-cn/modules.html
+
+
 #### 相关文章
-vuex v2 中的一些变化
-http://kingsongao.com/blog/2016/07/24/vuex-v2-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96/
+- [vuex2 中文文档](https://vuex.vuejs.org/zh-cn/)
+- [vuex v2 中的一些变化](http://kingsongao.com/blog/2016/07/24/vuex-v2-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96/)
+- [Vuex 2.0 入门 —— 读 Vuex 2.0 英文文档笔记](https://juejin.im/entry/57fde6560bd1d00058da4c5d)
+- [低仿饿了么H5-纯前端Vue版 + 手把手教学](http://www.jianshu.com/p/65c957b228e9)
+- [技术胖的vuex视频教程](http://jspang.com/2017/05/03/vuex/)
+- [vue2.0一起在懵逼的海洋里越陷越深](http://leenty.com/tags/vuejs/)
 
-Vuex 2.0 入门 —— 读 Vuex 2.0 英文文档笔记
-https://juejin.im/entry/57fde6560bd1d00058da4c5d
 
-低仿饿了么H5-纯前端Vue版 + 手把手教学
-http://www.jianshu.com/p/65c957b228e9
 
-vue2.0一起在懵逼的海洋里越陷越深
-http://leenty.com/2016/10/21/vue2-1/ 1
-http://leenty.com/tags/vuejs/ 2-5
-
-技术胖的vuex视频教程
-http://jspang.com/2017/05/03/vuex/
