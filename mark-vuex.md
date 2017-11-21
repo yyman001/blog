@@ -92,7 +92,7 @@ dispatch出发 actions 的事件（可能异步）出发了 mutation的 commit �
 模块一样是有自己的state，getters，mutations,actions 状态
 就调用写起来麻烦点
 
-直接写死
+静态模块
 ```js
 cost store = new Vuex.Store({
     modules:{
@@ -118,7 +118,7 @@ store.unregisterModule(moduleName) 来动态卸载模块。注意，你不能使
 
 
 #### 相关文章
-- [vuex2 中文文档](https://vuex.vuejs.org/zh-cn/)
+- [vuex2 中文文档](https://vuex.vuejs.org/zh-cn/api.html)
 - [vuex v2 中的一些变化](http://kingsongao.com/blog/2016/07/24/vuex-v2-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96/)
 - [Vuex 2.0 入门 —— 读 Vuex 2.0 英文文档笔记](https://juejin.im/entry/57fde6560bd1d00058da4c5d)
 - [低仿饿了么H5-纯前端Vue版 + 手把手教学](http://www.jianshu.com/p/65c957b228e9)
