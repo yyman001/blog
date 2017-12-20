@@ -124,6 +124,6 @@ store.unregisterModule(moduleName) 来动态卸载模块。注意，你不能使
 - [低仿饿了么H5-纯前端Vue版 + 手把手教学](http://www.jianshu.com/p/65c957b228e9)
 - [技术胖的vuex视频教程](http://jspang.com/2017/05/03/vuex/)
 - [vue2.0一起在懵逼的海洋里越陷越深](http://leenty.com/tags/vuejs/)
-
+- [Vuex中Actions参数传递](http://www.jianshu.com/p/73e3677e9dd2)
 
 
