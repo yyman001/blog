@@ -61,3 +61,7 @@ reflog只是你个人的。
 `git commit --amend`
 
 `git rebase <base>`（ID、分支名、标签，或是HEAD的相对引用）
+
+如何撤销一个合并
+https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/merge-conflicts
+只要在命令行界面中键入 “git merge --abort” 命令，你的合并操作就会被安全的撤销。当你解决完冲突，并且在合并完成后发现一个错误，你仍然还是有机会来简单地撤销它。你只须要键入 “git reset --hard ” 命令，系统就会回滚到那个合并开始前的状态，然后重新开始吧！
