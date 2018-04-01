@@ -65,3 +65,10 @@ reflog只是你个人的。
 如何撤销一个合并
 https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/merge-conflicts
 只要在命令行界面中键入 “git merge --abort” 命令，你的合并操作就会被安全的撤销。当你解决完冲突，并且在合并完成后发现一个错误，你仍然还是有机会来简单地撤销它。你只须要键入 “git reset --hard ” 命令，系统就会回滚到那个合并开始前的状态，然后重新开始吧！
+
+11.暂存修改
+git status  // 查看修改
+git stash   // 暂存
+git stash list // 查看暂存列表
+git stash apply xxx //恢复某个暂存（需要指定）
+https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89
