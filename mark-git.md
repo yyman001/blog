@@ -72,3 +72,10 @@ git stash   // 暂存
 git stash list // 查看暂存列表
 git stash apply xxx //恢复某个暂存（需要指定）
 https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89
+
+12.修改最后一个commit提交（最近，（往最后一个提交添加修改文件，遗留文件提交一个方法））
+git commit --adxxx? 
+
+13. 删除远程分支
+git push origin --delete <branchName>
+
