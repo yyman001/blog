@@ -79,3 +79,5 @@ git commit --adxxx?
 13. 删除远程分支
 git push origin --delete <branchName>
 
+14.提取某个commit 提交合并到当前commit (当前commit 标识不变)
+git cherry-pick `commitId`
