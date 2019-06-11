@@ -80,4 +80,5 @@ git commit --adxxx?
 git push origin --delete <branchName>
 
 14.提取某个commit 提交合并到当前commit (当前commit 标识不变)
-git cherry-pick `commitId`
+单个commit git cherry-pick `commitId`
+多个commit 只需要git cherry-pick `commitId1..commitIdn` 注意2个commitId之间的`两点`
