@@ -82,3 +82,12 @@ git push origin --delete <branchName>
 14.提取某个commit 提交合并到当前commit (当前commit 标识不变)
 单个commit git cherry-pick `commitId`
 多个commit 只需要git cherry-pick `commitId1..commitIdn` 注意2个commitId之间的`两点`
+
+15.撤销最后一次commit,并保留修改
+git reset HEAD~ --soft
+git stash
+然后切换到别的分支保存即可
+$ git checkout 分支名
+$ git stash pop
+$ git add .
+$ git commit -m "your message here"
